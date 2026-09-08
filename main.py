@@ -12,8 +12,8 @@ service = QiskitRuntimeService(channel="ibm_quantum_platform", token=MY_TOKEN)
 backend = service.least_busy(simulator=False, operational=True)
 print(f"Targeting: {backend.name}")
 
-# 3. YOUR CIRCUIT (Modified for 4 Qubits)
-qc = QuantumCircuit(4) # Initialize with 4 qubits
+# 3. YOUR CIRCUIT 
+qc = QuantumCircuit(4) # 4 qubits
 qc.h(0)                # Put the first qubit in superposition
 qc.cx(0, 1)            # Entangle 0 and 1
 qc.cx(1, 2)            # Entangle 1 and 2
@@ -23,7 +23,7 @@ qc.measure_all()       # Measure all 4 qubits
 # 4. TRANSPILE
 transpiled_qc = transpile(qc, backend=backend)
 
-# 5. RUN
+# RUN
 sampler = Sampler(backend)
 job = sampler.run([transpiled_qc]) 
 print(f"Job ID: {job.job_id()}")
